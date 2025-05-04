@@ -7,8 +7,14 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "components/jquery": "^3.7",
+        "datatables.net/datatables.net-buttons": "^3.2",
+        "datatables.net/datatables.net-dt": "^2.2",
+        "datatables.net/datatables.net-fixedheader-dt": "^4.0",
+        "datatables.net/datatables.net-responsive-dt": "^3.0",
         "laravel/framework": "^12.0",
-        "laravel/tinker": "^2.10.1"
+        "laravel/tinker": "^2.10.1",
+        "yajra/laravel-datatables-oracle": "^12.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

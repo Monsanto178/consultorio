@@ -5,8 +5,8 @@ use App\Http\Controllers\TutorController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('home');
-})->name('home');
+    return view('pacientes.create');
+})->name('pacientes.create');
 
 Route::resource('pacientes', PacienteController::class);
 

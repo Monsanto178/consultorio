@@ -27,7 +27,7 @@ class UpdatePacienteRequest extends FormRequest
             'apellido' => 'required|string|max:100',
             'dni' => 
             ['required', 'string', 'regex:/^\d{7,8}$/', Rule::unique('paciente', 'dni')->ignore($this->paciente)],
-            'genero' => 'required|string|max:15',
+            'genero' => ['required', Rule::in('Masculino' , 'Femenino', 'Otro')],
             'fecha_nac' => 'required|date'
         ];
     }

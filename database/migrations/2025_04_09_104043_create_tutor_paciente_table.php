@@ -11,16 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tutor_paciente', function (Blueprint $table) {
+        Schema::create('paciente_tutor', function (Blueprint $table) {
             $table->id();
 
             $table->foreignId('paciente_id')
                 ->constrained()
-                ->onDelete('cascade');
+                ->onDelete('cascade')->on('pacientes');
 
             $table->foreignId('tutor_id')
                 ->constrained()
-                ->onDelete('cascade');
+                ->onDelete('cascade')->on('tutores');
 
             $table->timestamps();
         });

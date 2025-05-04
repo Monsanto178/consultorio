@@ -10,7 +10,7 @@ use App\Models\Tutor;
 class PacienteController extends Controller
 {
     function create() {
-        return view('crear_paciente');
+        return view('pacientes.create');
     }
 
     function store(StorePacienteRequest $request) {
@@ -22,22 +22,24 @@ class PacienteController extends Controller
 
         $paciente->tutores()->attach($tutor->id);
 
+        // dd($paciente);
+
         return redirect()->route('home');
     }
 
     function index() {
         $pacientes = Paciente::all();
-        return view('pacientes', compact($pacientes));
+        return view('pacientes.index', compact('pacientes'));
     }
 
     function show(Paciente $paciente) {
         $paciente->load('tutores');
 
-        return view('paciente', compact('paciente'));
+        return view('pacientes.show', compact('paciente'));
     }
 
     function edit(Paciente $paciente) {
-        return view('editar_paciente', compact('paciente'));
+        return view('pacientes.edit', compact('paciente'));
     }
 
     function update(UpdatePacienteRequest $request, Paciente $paciente) {

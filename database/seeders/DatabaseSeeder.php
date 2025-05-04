@@ -2,6 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Paciente;
+use App\Models\Tutor;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -13,11 +15,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
         ]);
+
+        $pacientes = Paciente::factory(20)->create();
+        $tutores = Tutor::factory(20)->create();
+
+        foreach ($pacientes as $paciente) {
+            $randomTutor = $tutores->random(rand(1, 2));
+            $paciente->tutores()->attach($randomTutor);
+        }
     }
 }

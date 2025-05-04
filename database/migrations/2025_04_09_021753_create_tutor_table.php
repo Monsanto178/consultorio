@@ -11,13 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('tutor', function (Blueprint $table) {
+        Schema::create('tutores', function (Blueprint $table) {
             $table->id();
             $table->string('nombre');
             $table->string('apellido');
             $table->string('dni', 8)->unique();
             $table->string('telefono', 10)->unique()->nullable();
             $table->string('correo')->unique()->nullable();
+            $table->string('relacion');
             // $table->timestamp('fecha_nac')->nullable();
             $table->timestamps();
         });
