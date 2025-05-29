@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
@@ -18,8 +19,14 @@
     .h-height {
         height: 3rem;
     }
+    #app{
+        min-height: 100vh;
+    }
+    textarea {
+        resize: none
+      }
 </style>
-<body class="bg-white">
+<body class="bg-white" tabindex="-1">
     <header class="bg-primary bg-gradient h-height">
         <nav class="text-light">
             <div class="pag_title">

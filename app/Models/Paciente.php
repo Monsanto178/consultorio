@@ -43,4 +43,16 @@ class Paciente extends Model
     public function tutores() {
         return $this->belongsToMany(Tutor::class);
     }
+    public function consultas() {
+        return $this->hasMany(Consulta::class);
+    }
+    public function alergias() {
+        return $this->hasMany(Alergia::class);
+    }
+    public function anthereditarios() {
+        return $this->hasMany(AntHereditario::class);
+    }
+    public function antpatologicos() {
+        return $this->hasMany(AntPatologico::class);
+    }
 }

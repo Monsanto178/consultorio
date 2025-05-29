@@ -21,9 +21,7 @@ class PacienteController extends Controller
         $tutor = Tutor::create($tutorData);
 
         $paciente->tutores()->attach($tutor->id);
-
-        // dd($paciente);
-
+        
         return redirect()->route('home');
     }
 
@@ -46,11 +44,11 @@ class PacienteController extends Controller
 
         $paciente->update($request->validated());
         
-        return redirect()->route('pacientes')->with('succes', '¡Paciente actualizado exitosamente!');
+        return redirect()->route('pacientes.index')->with('succes', '¡Paciente actualizado exitosamente!');
     }
 
     function destroy(Paciente $paciente) {
         $paciente->delete();
-        return redirect()->route('pacientes')->with('succes', '¡Paciente eliminado exitosamente!');
+        return redirect()->route('pacientes.index')->with('succes', '¡Paciente eliminado exitosamente!');
     }
 }

@@ -11,13 +11,13 @@
     .w-35 {
         width: 35%;
     }
-    .btn {
+    .opt-btn {
         width: 100%
     }
 </style>
 <a href="{{route('pacientes.index')}}" class="text-dark">Volver</a>
-<section class="w-75 mx-auto d-flex justify-content-between">
-    <section class="w-35 border border-secundary border-3">
+<section class="w-75 mx-auto d-flex justify-content-between" id="mainContent">
+    <section id="paciente_card" data-paciente-id="{{$paciente->id}}" class="w-35 border border-secundary border-3">
         <article class="d-flex align-items-center">
             <picture class="w-50 d-flex justify-content-center">
                 <img src="{{asset($avatar)}}" class="w-75" alt="paciente_avatar">
@@ -34,7 +34,7 @@
 
     <section class="w-50">
         <article>
-            <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#tutores" aria-expanded="true" aria-controls="tutores">
+            <button class="btn btn-primary opt-btn" type="button" data-bs-toggle="collapse" data-bs-target="#tutores" aria-expanded="true" aria-controls="tutores">
                 Tutores
             </button>
             <div id="tutores" class="show">
@@ -60,8 +60,100 @@
                 </div>
             </div>
         </article>
+
+        <article>
+            <button data-tipo="ant-hereditarios" class="showBtn btn btn-primary opt-btn" type="button" data-bs-toggle="collapse" data-bs-target="#ant-hereditarios" aria-expanded="false" aria-controls="ant_family">
+                Antecedentes Hereditarios
+            </button>
+            <div class="collapse" id="ant-hereditarios">
+                <div class="card card-body">
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <article>
+            <button data-tipo="ant-patologicos" class="showBtn btn btn-primary opt-btn" type="button" data-bs-toggle="collapse" data-bs-target="#ant-patologicos" aria-expanded="false" aria-controls="ant_patolog">
+                Antecedentes Patológicos
+            </button>
+            <div class="collapse" id="ant-patologicos">
+                <div class="card card-body">
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <article>
+            <button data-tipo="alergias" id="alergias_show" class="showBtn btn btn-primary opt-btn" type="button" data-bs-toggle="collapse" data-bs-target="#alergias" aria-expanded="false" aria-controls="alergias">
+                Alergias
+            </button>
+            <div class="collapse" id="alergias">
+                <div class="card card-body">
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <article>
+            <button class="btn btn-primary opt-btn" type="button" data-bs-toggle="collapse" data-bs-target="#consultas" aria-expanded="false" aria-controls="consultas">
+                Consultas
+            </button>
+            <div class="collapse" id="consultas">
+                <div class="card card-body">
+                    <p>2024/10/15 -expansible- </p>
+                    <p>Motivo</p>
+                    <p>Descripción</p>
+                    <a href="{{ route('pacientes.consulta.sintomas', $paciente) }}" style="background-color: black">SINTOMAS</a>
+                    <a href="{{ route('pacientes.consulta.control', $paciente) }}" style="background-color: black">CONTROL</a>
+                </div>
+            </div>
+        </article>
+
+        <article>
+            <button class="btn btn-primary opt-btn" type="button" data-bs-toggle="collapse" data-bs-target="#citas" aria-expanded="false" aria-controls="citas">
+                Citas
+            </button>
+            <div class="collapse" id="citas">
+                <div class="card card-body">
+                    <p>2025/10/15</p>
+                </div>
+            </div>
+        </article>
     </section>
 </section>
 
-   
+<div class="modal" id="editModal" tabindex="-1" aria-labelledby="editLabel">
+    <div class="modal-dialog">
+        <form id="ediForm" method="POST">
+            @csrf
+            @method('PUT')
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editLabel"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div id="editBody" class="modal-body">
+                    <div class="mb-3">
+                        <label for="editInput" class="form-label" id="editTitle"></label>
+                        <input type="text" class="form-control" id="editInput" name="" required>
+                    </div>
+                    <div class="mb-3" id="extra-content"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="submit-btn">Guardar cambios</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+@endsection
+
+@section('scripts')
+     @vite('resources/js/getData.js')
 @endsection

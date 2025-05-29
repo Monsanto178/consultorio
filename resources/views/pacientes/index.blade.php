@@ -31,7 +31,7 @@
                 <td class="text-dark">
                     <a href="{{route('pacientes.show', $paciente)}}">Ver</a>
                     <a href="{{route('pacientes.edit', $paciente)}}">Editar</a>
-                    <a href="{{route('pacientes.show', $paciente)}}">Eliminar</a>
+                    <a href="">Eliminar</a>
                 </td>
             </tr>
             @empty

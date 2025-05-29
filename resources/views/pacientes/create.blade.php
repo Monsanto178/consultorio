@@ -2,10 +2,6 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="alert alert-warning" role="alert">
-        A simple warning alert-chet it out!
-    </div>
-
     <style>
       @media(min-width: 750px) {
         .custom_width {
@@ -127,11 +123,12 @@
           <div class="col-md-12">
             <label for="inputRelation" class="form-label">Relación</label>
             <select id="inputRelation" name="tutor[relacion]" class="form-select @error('tutor.paciente') is-invalid @enderror">
-              <option value="">Elegir...</option>
+              <option value="" selected>Elegir...</option>
               <option value="Padre">Padre</option>
               <option value="Madre">Madre</option>
+              <option value="Hermano/a">Hermano/a</option>
+              <option value="Abuelo/a">Abuelo/a</option>
               <option value="Familiar">Familiar</option>
-              <option value="Otro">Otro</option>
             </select>
             @error('tutor.relacion')
               <div class="invalid-feedback">{{ $message }}</div>
@@ -166,34 +163,3 @@
       </article>
     </form>
 @endsection
-
-
-{{-- @section('title', 'Consultorio Médico')
-    
-@section('content')
-    <div class="welcome_cheer">
-        <h2>¡Bienvenido!</h2>
-        <h3>¿Qué desea consultar el día de hoy?</h3>
-    </div>
-
-    <section class="home_options">
-        <x-home-opt 
-        btn-url="/pacientes" 
-        btn-title="PACIENTES" 
-        btn-class="pacientes" 
-        portrait-src="{{ asset('images/pacientes.png') }}" 
-        />
-        <x-home-opt 
-        btn-url="/consultas" 
-        btn-title="CONSULTAS" 
-        btn-class="consultas" 
-        portrait-src="{{ asset('images/consultas.svg') }}" 
-        />
-        <x-home-opt 
-        btn-url="/prescripciones" 
-        btn-title="PRESCRIPCIONES" 
-        btn-class="prescripciones" 
-        portrait-src="{{ asset('images/prescripciones.png') }}"  
-        />
-    </section>
-@endsection --}}
